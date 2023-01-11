@@ -1,15 +1,25 @@
 import { Router } from 'express';
-import {StatusCodes} from 'http-status-codes';
+import { StatusCodes } from 'http-status-codes';
 
-import { CitiesController } from '../controllers';
+import { CidadesController } from './../controllers';
+
+
 
 const router = Router();
 
 
+
 router.get('/', (_, res) => {
-  return res.send('Ola, dev');
+  return res.send('Olá, DEV!');
 });
 
-router.post('/cidades', CitiesController.create);
+router.post(
+  '/cidades',
+  CidadesController.createBodyValidator,
+  CidadesController.createQueryValidator,
+  CidadesController.create
+);
+
+
 
 export { router };
