@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import { StatusCodes } from 'http-status-codes';
 
 import { CitiesController } from './../controllers';
 
@@ -13,8 +12,12 @@ router.get('/', (_, res) => {
   return res.send('Olá, DEV!');
 });
 
-router.post('/cidades', CitiesController.createValidation, CitiesController.create);
 router.get('/cidades', CitiesController.getAllValidation, CitiesController.getAll);
+router.post('/cidades', CitiesController.createValidation, CitiesController.create);
+router.get('/cidades/:id', CitiesController.getByIdValidation, CitiesController.getById);
+router.put('/cidades/:id', CitiesController.updateByIdValidation, CitiesController.updateById);
+router.delete('/cidades/:id', CitiesController.deleteByIdValidation, CitiesController.deleteById);
+
 
 
 export { router };
