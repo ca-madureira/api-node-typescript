@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
-import { CidadesController } from './../controllers';
+import { CitiesController } from './../controllers';
 
 
 
@@ -13,13 +13,8 @@ router.get('/', (_, res) => {
   return res.send('Olá, DEV!');
 });
 
-router.post(
-  '/cidades',
-  CidadesController.createBodyValidator,
-  CidadesController.createQueryValidator,
-  CidadesController.create
-);
-
+router.post('/cidades', CitiesController.createValidation, CitiesController.create);
+router.get('/cidades', CitiesController.getAllValidation, CitiesController.getAll);
 
 
 export { router };
