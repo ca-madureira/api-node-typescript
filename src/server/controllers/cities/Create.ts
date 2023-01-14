@@ -3,27 +3,18 @@ import { StatusCodes } from 'http-status-codes';
 import * as yup from 'yup';
 
 import { validation } from '../../shared/middlewares';
+import { ICity } from '../../database/models';
 
 
-interface ICidade {
-  nome: string;
-  
-}
-interface IFilter {
-  filter?: string;
-}
+interface IBodyProps extends Omit<ICity, 'id'> { }
+
 export const createValidation = validation((getSchema) => ({
-  body: getSchema<ICidade>(yup.object().shape({
+  body: getSchema<IBodyProps>(yup.object().shape({
     nome: yup.string().required().min(3),
-  })),
-  query: getSchema<IFilter>(yup.object().shape({
-    filter: yup.string().required().min(3),
   })),
 }));
 
-export const create = async (req: Request<{}, {}, ICidade>, res: Response) => {
-  console.log(req.body);
+export const create = async (req: Request<{}, {}, ICity>, res: Response) => {
 
-
-  return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Não implementado');
+  return res.status(StatusCodes.CREATED).json(1);
 };
